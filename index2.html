@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>ChatApp Pro</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      font-size: 16px;
+    }
+    input[type="text"], button {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen flex-col md:flex-row">
+    <div class="w-full md:w-80 bg-white border-r border-gray-200 flex flex-col">
+      <div class="p-4 border-b">
+        <div class="flex justify-between items-center mb-2">
+          <h1 class="text-2xl font-bold text-indigo-600">ChatApp Pro</h1>
+          <button onclick="logout()" class="text-gray-500 hover:text-red-600" title="Déconnexion">⎋</button>
+        </div>
+        <p class="text-sm text-gray-600">Connecté en tant que <strong id="userDisplay">Utilisateur</strong></p>
+      </div>
+      <div class="flex-1 overflow-y-auto p-4">
+        <div class="text-center text-gray-500 text-sm mt-8">Aucun contact disponible.<br />Ajoutez un contact pour commencer.</div>
+      </div>
+    </div>
+    <div class="flex-1 flex flex-col">
+      <div class="flex-1 flex items-center justify-center bg-gray-50">
+        <div class="text-center text-gray-500">
+          <div class="text-6xl mb-4">💬</div>
+          <h2 class="text-xl font-semibold">Bienvenue sur ChatApp Pro</h2>
+          <p class="mt-2">Ajoutez un contact pour commencer à discuter.</p>
+        </div>
+      </div>
+      <div class="p-4 bg-white border-t">
+        <div class="flex items-center space-x-2">
+          <button class="p-2 hover:bg-gray-100 rounded-full">📎</button>
+          <input type="text" placeholder="Écrivez un message..." class="flex-1 px-4 py-2 border rounded-full" />
+          <button class="p-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const user = localStorage.getItem('currentUser');
+    if (!user) {
+      alert('Veuillez vous connecter.');
+      window.location.href = 'index.html';
+    } else {
+      document.getElementById('userDisplay').textContent = user;
+    }
+    function logout() {
+      localStorage.removeItem('currentUser');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
